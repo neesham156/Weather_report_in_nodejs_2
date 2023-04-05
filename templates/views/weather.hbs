@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>headerlink}}
+</head>
+
+<body>
+    {{>navbar}}
+
+    <!-- main header -->
+
+    <div class="container-fluid main_header">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="main_content">
+                    <form class="temp_form">
+                        <input type="text" id="cityName" placeholder="Enter your city name" autocomplete="off">
+                        <input type="submit" value="search" id="submitbtn">
+                    </form>
+                </div>
+                <div class="tempinfo">
+                    <div class="top_layer">
+                        <p id="day">Tuesday</p>
+                        <p id="today_time">13 OCT</p>
+
+                    </div>
+                    <div class="main_layer">
+<p id="city_name">Get Output Here</p>
+<div class="middle_layer data_hide">
+    <p id="temp"> <span id="temp_real">0</span><sup>o</sup>C</p>
+    <p id="temp_status"> <i class="fas fa-cloud" aria-hidden="true"></i></p>
+
+</div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{>footer}}
+    <script src="js/main.js"></script>
+    <script>
+
+const getcurrday= () => {
+
+    var week=new Array(7);
+    week[0]="Sun";
+    week[1]="Mon";
+    week[2]="Tue";
+    week[3]="Wed";
+    week[4]="Thur";
+    week[5]="Fri";
+    week[6]="Sat";
+
+    let currentTime=new Date();
+    let day=(week[currentTime.getDay()])
+    const curDay=document.getElementById("day");
+  curDay.innerText= day;
+};
+
+ const getcurrtime= () =>{
+
+            var months=["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+            var now =new Date();
+            var month=now.getMonth()+1;
+            var day =now.getDate();
+            let hours =now.getHours();
+            let mins=now.getMinutes();
+            let period="AM";
+            if(hours>11)
+            {
+                period="PM";
+                if(hours>12)
+                {
+                    hours-=12;
+                }
+            }
+
+            if(mins<10){
+                mins="0"+mins;
+            }
+             const curtime=document.getElementById("today_time");
+curtime.innerHTML= `${months[month]} ${day}|${hours}:${mins} ${period}`
+         
+        }
+
+
+getcurrday();
+getcurrtime();
+
+
+
+
+    </script>
+</body>
+
+</html>
